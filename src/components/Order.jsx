@@ -11,7 +11,6 @@ const Order = () => {
       const response = await axios.get(baseURL);
       const data = response.data;
       setData(data);
-      console.log("data", data);
     };
     getCharacters();
   }, []);
@@ -24,25 +23,38 @@ const Order = () => {
         </button>
       </div>
       <div className="order-table">
-        <table>
+        <table
+          style={{
+            border: "0.5px solid red",
+            textAlign: "center",
+            padding: "1rem",
+          }}
+        >
           <thead>
-            <th>Sno.</th>
-            <th>Title</th>
-            <th>Quantity</th>
-            <th>City</th>
-            <th>Message</th>
+            <tr>
+              <td>Sno.</td>
+              <td>Title</td>
+              <td>Quantity</td>
+              <td>City</td>
+              <td>Message</td>
+            </tr>
           </thead>
           <tbody>
             {data.map((item, index) => (
-              <tr>
+              <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{item.Title}</td>
                 <td>{item.Quantity}</td>
                 <td>{item.City}</td>
-                <td>{item.Message}</td>
+                <td
+                  style={{
+                    width: "8rem",
+                  }}
+                >
+                  {item.Message}
+                </td>
               </tr>
             ))}
-            ;
           </tbody>
         </table>
       </div>
